@@ -1,7 +1,11 @@
 :root {
   --board-size: min(90vw, 90vh, 500px);
+  --grid-size: 6;
   --gap: calc(var(--board-size) * 0.03);
   --cell-radius: calc(var(--board-size) * 0.02);
+  --cell-size: calc((var(--board-size) - 2 * var(--gap) - (var(--grid-size) - 1) * var(--gap)) / var(--grid-size));
+
+  --cat-doodle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%239c9186' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 40 L22 18 L42 32 Z'/%3E%3Cpath d='M70 40 L78 18 L58 32 Z'/%3E%3Ccircle cx='50' cy='55' r='28'/%3E%3Ccircle cx='40' cy='52' r='2.5' fill='%239c9186'/%3E%3Ccircle cx='60' cy='52' r='2.5' fill='%239c9186'/%3E%3Cpath d='M47 62 Q50 65 53 62'/%3E%3Cpath d='M50 62 L50 66'/%3E%3Cpath d='M42 68 Q50 74 58 68'/%3E%3Cpath d='M16 58 L34 56'/%3E%3Cpath d='M16 66 L34 62'/%3E%3Cpath d='M84 58 L66 56'/%3E%3Cpath d='M84 66 L66 62'/%3E%3C/g%3E%3C/svg%3E");
 
   --color-bg: #faf8ef;
   --color-text: #776e65;
@@ -154,8 +158,8 @@ body {
   position: absolute;
   inset: var(--gap);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
   gap: var(--gap);
 }
 
@@ -171,6 +175,10 @@ body {
 .grid-bg .cell {
   background: var(--color-cell-bg);
   border-radius: var(--cell-radius);
+  background-image: var(--cat-doodle);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 62%;
 }
 
 .tile-container {
@@ -178,8 +186,8 @@ body {
   inset: var(--gap);
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
   gap: var(--gap);
 }
 
@@ -189,7 +197,7 @@ body {
   justify-content: center;
   border-radius: var(--cell-radius);
   font-weight: 700;
-  font-size: calc(var(--board-size) * 0.09);
+  font-size: calc(var(--cell-size) * 0.42);
   background: var(--tile-2-bg);
   color: var(--tile-dark-text);
 }
@@ -203,38 +211,38 @@ body {
 .tile[data-value="128"] {
   background: var(--tile-128-bg);
   color: var(--tile-light-text);
-  font-size: calc(var(--board-size) * 0.08);
+  font-size: calc(var(--cell-size) * 0.38);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.15) inset, 0 0 15px 1px rgba(243,215,116,0.5);
 }
 .tile[data-value="256"] {
   background: var(--tile-256-bg);
   color: var(--tile-light-text);
-  font-size: calc(var(--board-size) * 0.08);
+  font-size: calc(var(--cell-size) * 0.38);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.2) inset, 0 0 18px 2px rgba(243,215,116,0.6);
 }
 .tile[data-value="512"] {
   background: var(--tile-512-bg);
   color: var(--tile-light-text);
-  font-size: calc(var(--board-size) * 0.08);
+  font-size: calc(var(--cell-size) * 0.38);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset, 0 0 20px 3px rgba(243,215,116,0.7);
 }
 .tile[data-value="1024"] {
   background: var(--tile-1024-bg);
   color: var(--tile-light-text);
-  font-size: calc(var(--board-size) * 0.065);
+  font-size: calc(var(--cell-size) * 0.31);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.3) inset, 0 0 22px 4px rgba(243,215,116,0.8);
 }
 .tile[data-value="2048"] {
   background: var(--tile-2048-bg);
   color: var(--tile-light-text);
-  font-size: calc(var(--board-size) * 0.065);
+  font-size: calc(var(--cell-size) * 0.31);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.35) inset, 0 0 25px 5px rgba(243,215,116,0.9);
 }
 .tile[data-value="4096"],
 .tile[data-value="8192"] {
   background: var(--tile-super-bg);
   color: var(--tile-light-text);
-  font-size: calc(var(--board-size) * 0.06);
+  font-size: calc(var(--cell-size) * 0.28);
 }
 
 .tile-new {

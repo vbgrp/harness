@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const SIZE = 4;
+  const SIZE = 6;
   const BEST_SCORE_KEY = 'game-2048-best-score';
   const WIN_VALUE = 2048;
 
