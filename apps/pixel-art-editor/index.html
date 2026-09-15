@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>픽셀 아트 에디터</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>🎨 픽셀 아트 에디터</h1>
+    <p>16x16 격자에 클릭·드래그·터치로 도트를 찍어 그림을 그려보세요.</p>
+  </header>
+
+  <main class="app-main">
+    <section class="grid-section">
+      <div id="pixel-grid" role="grid" aria-label="16x16 픽셀 그리드"></div>
+    </section>
+
+    <aside class="controls">
+      <div class="panel toolbar">
+        <h2 class="panel-title">도구</h2>
+        <div class="tool-buttons">
+          <button id="pen-btn" class="tool-btn active" type="button" title="펜" aria-pressed="true">✏️ 펜</button>
+          <button id="eraser-btn" class="tool-btn" type="button" title="지우개" aria-pressed="false">🧹 지우개</button>
+          <button id="undo-btn" class="tool-btn" type="button" title="실행 취소" disabled>↩️ 실행 취소</button>
+          <button id="clear-btn" class="tool-btn danger" type="button" title="전체 지우기">🗑️ 전체 지우기</button>
+        </div>
+      </div>
+
+      <div class="panel palette">
+        <h2 class="panel-title">색상</h2>
+        <div id="swatches" class="swatches"></div>
+        <div class="custom-color-row">
+          <label for="custom-color-picker">커스텀 색상</label>
+          <input type="color" id="custom-color-picker" value="#3b82f6">
+          <span id="current-color-preview" class="current-color-preview" title="현재 선택된 색상"></span>
+        </div>
+      </div>
+
+      <div class="panel export">
+        <h2 class="panel-title">내보내기</h2>
+        <div class="export-row">
+          <label for="export-scale">배율</label>
+          <select id="export-scale">
+            <option value="8">8x (128px)</option>
+            <option value="16" selected>16x (256px)</option>
+            <option value="32">32x (512px)</option>
+          </select>
+        </div>
+        <button id="save-png-btn" class="tool-btn primary" type="button">💾 PNG로 저장</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
