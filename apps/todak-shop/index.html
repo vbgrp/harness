@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>퍼피세라믹 식기 — 토닥몰</title>
+<meta name="description" content="목이 짧은 퍼피가 편하게 먹을 수 있도록 15° 기울인 세라믹 식기 — 토닥몰 상품 상세 페이지">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <button type="button" class="icon-btn icon-btn--quiet" aria-label="뒤로">
+      <span class="icon" data-icon="chevron-left"></span>
+    </button>
+    <span class="topbar-title">퍼피 식기</span>
+    <div class="topbar-right">
+      <button type="button" class="icon-btn icon-btn--quiet" aria-label="검색">
+        <span class="icon" data-icon="search"></span>
+      </button>
+      <button type="button" class="icon-btn icon-btn--quiet" aria-label="장바구니">
+        <span class="icon" data-icon="shopping-bag"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="gallery" aria-label="상품 사진">
+      <div class="gallery-main">
+        <div class="photo-placeholder">
+          <span class="icon" data-icon="image"></span>
+          <div class="photo-label" id="gallery-photo-label">상품 정면 컷 (미제공)</div>
+        </div>
+        <span class="gallery-count"><em id="gallery-count-current">1</em> / 4</span>
+      </div>
+      <div class="thumbs" role="group" aria-label="사진 선택">
+        <button type="button" class="thumb is-on" data-index="0" aria-label="사진 1" aria-pressed="true">
+          <div class="photo-placeholder photo-placeholder--thumb"><span class="icon" data-icon="image"></span></div>
+        </button>
+        <button type="button" class="thumb" data-index="1" aria-label="사진 2" aria-pressed="false">
+          <div class="photo-placeholder photo-placeholder--thumb"><span class="icon" data-icon="image"></span></div>
+        </button>
+        <button type="button" class="thumb" data-index="2" aria-label="사진 3" aria-pressed="false">
+          <div class="photo-placeholder photo-placeholder--thumb"><span class="icon" data-icon="image"></span></div>
+        </button>
+        <button type="button" class="thumb" data-index="3" aria-label="사진 4" aria-pressed="false">
+          <div class="photo-placeholder photo-placeholder--thumb"><span class="icon" data-icon="image"></span></div>
+        </button>
+      </div>
+    </section>
+
+    <section class="block head">
+      <div class="badges">
+        <span class="badge badge--accent-solid">신상품</span>
+        <span class="badge badge--mint">수의사 추천</span>
+      </div>
+      <h1 class="p-name">퍼피들이 가장편한 각도 :<br>퍼피세라믹 식기</h1>
+      <p class="p-sub">아직 목이 짧은 아이가 고개를 덜 숙이고 먹을 수 있게, 볼을 15° 기울였어요.</p>
+      <div class="p-price"><em>57,000</em>원</div>
+      <div class="ship-note">
+        <span class="icon" data-icon="truck" data-icon-size="15"></span>
+        3만원 이상 무료배송 · 평일 <em>14:00</em> 이전 주문 당일 발송
+      </div>
+    </section>
+
+    <section class="block options" aria-label="구매 옵션">
+      <div class="opt-label">색상<span class="opt-picked" id="color-picked">아이보리</span></div>
+      <div class="color-row" role="group" aria-label="색상 선택">
+        <button type="button" class="color-chip is-on" data-color="ivory" aria-pressed="true">
+          <span class="color-dot" style="background:var(--surface-tint)"></span>아이보리
+        </button>
+        <button type="button" class="color-chip" data-color="mint" aria-pressed="false">
+          <span class="color-dot" style="background:var(--mint-500)"></span>민트
+        </button>
+        <button type="button" class="color-chip" data-color="frost" aria-pressed="false">
+          <span class="color-dot" style="background:var(--frost-500)"></span>프로스트
+        </button>
+      </div>
+
+      <div class="opt-label">
+        사이즈
+        <a href="#size-guide" class="opt-help">
+          <span class="icon" data-icon="chevron-right" data-icon-size="13"></span>사이즈 안내
+        </a>
+      </div>
+      <div class="size-col" role="group" aria-label="사이즈 선택">
+        <button type="button" class="size-row" data-size="s" aria-pressed="false">
+          <span class="size-name">S</span>
+          <span class="size-sub">3kg 미만 · 200ml</span>
+          <span class="icon size-check" data-icon="check" data-icon-size="18"></span>
+        </button>
+        <button type="button" class="size-row is-on" data-size="m" aria-pressed="true">
+          <span class="size-name">M</span>
+          <span class="size-sub">3–7kg · 350ml</span>
+          <span class="icon size-check" data-icon="check" data-icon-size="18"></span>
+        </button>
+        <button type="button" class="size-row is-out" data-size="l" disabled aria-disabled="true">
+          <span class="size-name">L</span>
+          <span class="size-sub">7kg 이상 · 500ml</span>
+          <span class="size-out">품절</span>
+        </button>
+      </div>
+
+      <div class="opt-label">수량</div>
+      <div class="qty-row">
+        <div class="qty">
+          <button type="button" id="qty-minus" aria-label="수량 줄이기">
+            <span class="icon" data-icon="minus" data-icon-size="18"></span>
+          </button>
+          <span class="num" id="qty-num">1</span>
+          <button type="button" id="qty-plus" aria-label="수량 늘리기">
+            <span class="icon" data-icon="plus" data-icon-size="18"></span>
+          </button>
+        </div>
+        <div class="qty-total" aria-live="polite">합계 <em id="qty-total-price">57,000</em>원</div>
+      </div>
+    </section>
+
+    <section class="block why-todak">
+      <div class="eyebrow">WHY TODAK</div>
+      <h2 class="s-title">이 각도를 고른 이유</h2>
+      <div class="points">
+        <div class="point">
+          <span class="point-chip"><span class="icon" data-icon="heart-pulse"></span></span>
+          <div>
+            <div class="point-t">목을 덜 숙이게 15° 경사</div>
+            <div class="point-d">퍼피는 아직 목과 앞다리 힘이 약해요. 볼이 앞으로 기울어 있어 고개를 깊이 숙이지 않고 먹을 수 있어요.</div>
+          </div>
+        </div>
+        <div class="point">
+          <span class="point-chip"><span class="icon" data-icon="check"></span></span>
+          <div>
+            <div class="point-t">흘림이 적은 안쪽 턱</div>
+            <div class="point-d">볼 안쪽에 턱을 둬서 사료가 밖으로 밀려 나오지 않아요. 급하게 먹는 아이에게도 괜찮았어요.</div>
+          </div>
+        </div>
+        <div class="point">
+          <span class="point-chip"><span class="icon" data-icon="stethoscope"></span></span>
+          <div>
+            <div class="point-t">진료실에서 먼저 썼어요</div>
+            <div class="point-d">입원실 급여기로 6개월 쓰면서 유약 마모와 세척 상태를 확인했어요.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block usage-photo">
+      <div class="photo-placeholder photo-placeholder--wide">
+        <span class="icon" data-icon="image"></span>
+        <div class="photo-label">사용 컷 · 퍼피가 식기 앞에 앉은 모습 (미제공)</div>
+      </div>
+    </section>
+
+    <section class="block specs" id="size-guide">
+      <h2 class="s-title">상품 정보</h2>
+      <dl class="spec">
+        <div class="spec-row"><dt>소재</dt><dd>경질 세라믹 (무광 유약)</dd></div>
+        <div class="spec-row"><dt>각도</dt><dd>15° 경사 볼</dd></div>
+        <div class="spec-row"><dt>무게</dt><dd>S 380g · M 520g</dd></div>
+        <div class="spec-row"><dt>관리</dt><dd>식기세척기 · 열탕 소독 가능</dd></div>
+        <div class="spec-row"><dt>제조</dt><dd>대한민국</dd></div>
+      </dl>
+      <div class="care">
+        <span class="icon" data-icon="pill" data-icon-size="18"></span>
+        <div>처음 쓰는 아이는 기존 식기와 나란히 두고 며칠 적응시켜 주세요. 잘 먹지 않으면 진료실에 편하게 물어봐 주세요.</div>
+      </div>
+    </section>
+
+    <section class="block ask-vet">
+      <div class="card card--interactive">
+        <div class="card-icon"><span class="icon" data-icon="message-circle" data-icon-size="22"></span></div>
+        <h3 class="card-title">수의사에게 물어볼까요?</h3>
+        <p class="card-subtitle">아이 체중과 나이를 알려주시면 맞는 사이즈를 안내해 드려요.</p>
+        <div class="card-footer">
+          <button type="button" class="btn btn--outline btn--sm">
+            상담 남기기<span class="icon" data-icon="chevron-right" data-icon-size="16"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="tail">© 2026 TODAK CARE SHOP</footer>
+
+    <aside class="buybar" aria-label="구매 요약">
+      <div class="buybar-meta">
+        <div class="buybar-opt" id="buybar-opt">아이보리 · M · 1개</div>
+        <div class="buybar-price" aria-live="polite"><em id="buybar-price">57,000</em>원</div>
+      </div>
+      <div class="buybar-btns">
+        <button type="button" id="wish-btn" class="icon-btn icon-btn--outline" aria-label="찜하기" aria-pressed="false">
+          <span class="icon" data-icon="heart"></span>
+        </button>
+        <button type="button" class="btn btn--outline">장바구니</button>
+        <button type="button" class="btn btn--primary">
+          <span class="icon" data-icon="shopping-bag" data-icon-size="18"></span>바로 구매
+        </button>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

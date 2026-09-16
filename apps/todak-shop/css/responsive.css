@@ -1,0 +1,70 @@
+/**
+ * responsive.css — @media 블록 전용. 4단계 브레이크포인트(기본/600/900/1200)를 구현한다.
+ * 기본(모바일) 스타일은 전부 style.css에 있으며, 여기서는 그 위에 덮어쓰는 규칙만 다룬다.
+ */
+
+/* ===== 600px 이상 — 큰 폰 / 작은 태블릿 세로 ===== */
+@media (min-width: 600px) {
+  .topbar { padding: 0 20px; }
+  .block { padding: 28px 32px; }
+  .block.head { padding-top: 22px; }
+  .thumbs { padding: 10px 32px 0; }
+  .buybar { padding: 14px 32px 18px; }
+  .p-name { font-size: 26px; }
+  .s-title { font-size: 21px; }
+}
+
+/* ===== 900px 이상 — 태블릿 가로 / 데스크톱: 좌(갤러리+구매)·우(정보) 2단 그리드 ===== */
+@media (min-width: 900px) {
+  .topbar { padding: 0 24px; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    column-gap: 40px;
+    padding: 32px 24px 48px;
+    align-items: start;
+  }
+
+  /* DOM 순서는 그대로 두고 grid-column/grid-row 배치만으로 좌우 분리 */
+  .gallery { grid-column: 1; grid-row: 1; }
+  .block { grid-column: 2; }
+  .tail { grid-column: 2; }
+
+  .buybar {
+    grid-column: 1;
+    /* `.layout`에 grid-template-rows를 명시하지 않아 행은 전부 암시적 트랙이다.
+       이 경우 `-1`은 "명시적 그리드"의 마지막 줄(=1번째 줄, 트랙이 0개이므로)로 해석되어
+       `2 / -1`이 `2 / 1`로 역전 → 자동 교정되며 1행(갤러리와 동일 행)으로 붕괴해
+       구매 바가 갤러리 위에 겹쳐 보이는 버그가 있었다. 큰 span으로 2행부터 충분히 아래까지
+       걸치게 해 회피한다(비어 있는 암시적 트랙은 높이 0이라 여백에 영향 없음). */
+    grid-row: 2 / span 30;
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    background: var(--white);
+    backdrop-filter: none;
+    border-top: none;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    z-index: 1;
+  }
+}
+
+/* ===== 1200px 이상 — 대형 데스크톱: 중앙 정렬 + 좌측 컬럼 확대 ===== */
+@media (min-width: 1200px) {
+  .page {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  .layout {
+    grid-template-columns: 480px 1fr;
+    column-gap: 48px;
+    padding: 40px 0 56px;
+  }
+  .topbar { padding: 0; }
+}

@@ -1,0 +1,121 @@
+/**
+ * tokens.css — TODAK 디자인 시스템 토큰 중 이 페이지에서 실제로 쓰는 값만 자체 완결로 옮겨 적음.
+ * (apps/todak/TODAK Animal Hospital Design System/ 원본과는 독립적 — 이 파일만으로 앱이 완결됨)
+ * 셀렉터 스타일 없음. 폰트 로드 + custom property 정의만.
+ */
+
+/* 폰트 CDN — 원본과 동일 */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap");
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+}
+
+:root {
+  /* 색상 — Frost */
+  --frost-950: #182C42;
+  --frost-900: #24405F;
+  --frost-800: #3A5F87;
+  --frost-700: #5C82B3;
+  --frost-600: #7C9FCB;
+  --frost-500: #9FBDE1;
+  --frost-300: #C4D7EE;
+  --frost-200: #D8E5F3;
+  --frost-100: #EDF3FA;
+
+  /* 색상 — Mint */
+  --mint-700: #4E8E7F;
+  --mint-500: #78B4A6;
+  --mint-200: #C2DED7;
+  --mint-100: #E9F4F1;
+
+  /* 색상 — Buttercup (Badge accent) */
+  --buttercup-600: #D9A50C;
+  --buttercup-500: #F5C421;
+  --buttercup-200: #FCE9AE;
+  --buttercup-100: #FEF6DE;
+
+  /* 색상 — Spicy (Badge cta, action-primary) */
+  --spicy-700: #BF5502;
+  --spicy-500: #EA6903;
+  --spicy-200: #FAD3B4;
+  --spicy-100: #FDEDE1;
+
+  /* 중립 */
+  --white: #FFFFFF;
+  --surface-tint: #F7F9FC;
+  --ink-900: #222B38;
+  --ink-600: #68778D;
+  --ink-400: #8E9AAC;
+  --line-200: #E3E9F0;
+  --line-100: #F2F5F8;
+
+  /* 시맨틱 — 서피스 */
+  --surface-card: var(--white);
+  --surface-brand: var(--frost-800);
+  --surface-brand-soft: var(--frost-100);
+  --surface-calm: var(--frost-100);
+  --surface-mint-soft: var(--mint-100);
+
+  /* 시맨틱 — 텍스트 */
+  --text-body: var(--ink-900);
+  --text-muted: var(--ink-600);
+  --text-faint: var(--ink-400);
+
+  /* 시맨틱 — 라인 */
+  --border-subtle: var(--line-200);
+  --border-field: var(--line-200);
+
+  /* 시맨틱 — 액션 */
+  --action-primary-bg: var(--spicy-500);
+  --action-primary-bg-hover: var(--spicy-700);
+  --action-primary-fg: var(--white);
+  --action-quiet-bg: var(--frost-100);
+  --action-quiet-fg: var(--frost-900);
+
+  /* 타이포그래피 */
+  --font-kr: "Pretendard Variable", "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-en: "Montserrat", "Pretendard Variable", sans-serif;
+  --font-body: var(--font-kr);
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 22px;
+  --text-xl: 28px;
+  --text-2xl: 36px;
+  --lh-tight: 1.24;
+  --lh-snug: 1.38;
+  --lh-normal: 1.55;
+  --lh-relaxed: 1.72;
+  --ls-normal: -0.01em;
+  --ls-wide: 0.02em;
+  --ls-caps: 0.14em;
+
+  /* radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 9999px;
+  --radius-card: 16px;
+  --radius-field: 12px;
+
+  /* elevation */
+  --shadow-xs: 0 1px 2px rgba(34, 43, 56, .05);
+  --shadow-sm: 0 2px 8px rgba(34, 43, 56, .06);
+  --shadow-md: 0 6px 20px rgba(34, 43, 56, .08);
+  --shadow-cta: 0 6px 16px rgba(234, 105, 3, .24);
+  --shadow-brand: 0 8px 24px rgba(58, 95, 135, .18);
+
+  /* motion */
+  --ease-soft: cubic-bezier(.32, .72, .28, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --transition-base: all var(--dur-base) var(--ease-soft);
+}
