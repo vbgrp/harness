@@ -1,4 +1,0 @@
-# Per-app planning/workflow docs (Plan/Build/Review instructions, spec, review notes).
-# Kept locally and git-tracked in the local repo's working state via `git add -f` is not used;
-# these are intentionally excluded so they never get pushed to GitHub.
-apps/*/*.md
