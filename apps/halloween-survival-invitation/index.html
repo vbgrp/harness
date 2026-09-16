@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎃 할로윈 언데드 클럽 초대장</title>
+<meta name="description" content="자정이 지나면 문을 여는 심야 호러영화 클럽, 할로윈 언데드 클럽에 당신을 초대합니다.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎃</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== 히어로 섹션 ===== -->
+  <section id="hero" class="section-fullbleed">
+    <div class="fog fog-1"></div>
+    <div class="fog fog-2"></div>
+    <div class="fog fog-3"></div>
+
+    <div class="web-corner web-top-left" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="rgba(255,255,255,0.35)" fill="none" stroke-width="1.2">
+          <path d="M0,0 L200,200"/>
+          <path d="M0,0 L160,0"/>
+          <path d="M0,0 L0,160"/>
+          <path d="M0,0 L200,90"/>
+          <path d="M0,0 L90,200"/>
+          <path d="M20,0 Q40,40 0,20"/>
+          <path d="M55,0 Q75,75 0,55"/>
+          <path d="M95,0 Q120,120 0,95"/>
+          <path d="M140,0 Q160,160 0,140"/>
+        </g>
+      </svg>
+    </div>
+    <div class="web-corner web-top-right" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="rgba(255,255,255,0.35)" fill="none" stroke-width="1.2">
+          <path d="M200,0 L0,200"/>
+          <path d="M200,0 L40,0"/>
+          <path d="M200,0 L200,160"/>
+          <path d="M200,0 L0,90"/>
+          <path d="M200,0 L110,200"/>
+          <path d="M180,0 Q160,40 200,20"/>
+          <path d="M145,0 Q125,75 200,55"/>
+          <path d="M105,0 Q80,120 200,95"/>
+          <path d="M60,0 Q40,160 200,140"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="floaters" aria-hidden="true">
+      <span class="floater f1">🎃</span>
+      <span class="floater f2">👻</span>
+      <span class="floater f3">🦇</span>
+      <span class="floater f4">🕸️</span>
+      <span class="floater f5">💀</span>
+      <span class="floater f6">🦇</span>
+      <span class="floater f7">👻</span>
+    </div>
+
+    <div class="hero-inner">
+      <p class="hero-eyebrow">YOU ARE INVITED</p>
+      <h1 class="hero-title flicker">🎃 할로윈 언데드 클럽 🎃</h1>
+      <p class="hero-tagline">오늘 밤, 스크린 속 공포가 되살아난다</p>
+      <p class="hero-sub">자정이 지나면 문을 여는 언데드들의 심야 호러영화 클럽에 당신을 초대합니다.</p>
+      <a href="#countdown" class="btn btn-primary shake-hover">클럽 정보 보기 👇</a>
+    </div>
+  </section>
+
+  <!-- ===== D-day 카운트다운 섹션 ===== -->
+  <section id="countdown" class="section reveal">
+    <div class="card">
+      <span class="badge" id="d-badge">D-DAY</span>
+      <h2 class="section-title">⏳ 개봉까지 남은 시간</h2>
+      <p class="section-desc" id="countdown-desc">클럽 개봉까지 카운트다운 중...</p>
+
+      <div id="countdown-active" class="time-grid">
+        <div class="time-box">
+          <span class="time-value" id="days">00</span>
+          <span class="time-label">DAYS</span>
+        </div>
+        <div class="time-box">
+          <span class="time-value" id="hours">00</span>
+          <span class="time-label">HOURS</span>
+        </div>
+        <div class="time-box">
+          <span class="time-value" id="minutes">00</span>
+          <span class="time-label">MIN</span>
+        </div>
+        <div class="time-box">
+          <span class="time-value" id="seconds">00</span>
+          <span class="time-label">SEC</span>
+        </div>
+      </div>
+
+      <div id="countdown-ended" class="countdown-ended hidden">
+        <p class="ended-message">🎉 상영이 시작됐습니다! 지금 입장하세요 👻</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 행사 정보 섹션 ===== -->
+  <section id="event-info" class="section reveal">
+    <div class="card">
+      <h2 class="section-title">🎬 클럽 입장 안내</h2>
+
+      <div class="info-list">
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">🗓️</span>
+          <div class="info-text">
+            <span class="info-label">일시</span>
+            <span class="info-value" id="event-datetime">-</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">📍</span>
+          <div class="info-text">
+            <span class="info-label">장소</span>
+            <span class="info-value" id="event-venue">-</span>
+            <span class="info-sub" id="event-address">-</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">🎬</span>
+          <div class="info-text">
+            <span class="info-label">오늘의 상영작</span>
+            <span class="info-value" id="event-feature">-</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">🎒</span>
+          <div class="info-text">
+            <span class="info-label">준비물 / 주의사항</span>
+            <span class="info-value" id="event-notice">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 장소 지도 섹션 ===== -->
+  <section id="map" class="section reveal">
+    <div class="card">
+      <h2 class="section-title">🗺️ 클럽 위치</h2>
+      <p class="section-desc" id="map-address-desc">-</p>
+
+      <div class="map-frame">
+        <iframe
+          id="map-iframe"
+          src=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="클럽 장소 지도"></iframe>
+      </div>
+
+      <a id="directions-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener">🧭 길찾기로 입장 경로 확인하기</a>
+    </div>
+  </section>
+
+  <!-- ===== RSVP / 공유 섹션 (선택) ===== -->
+  <section id="rsvp" class="section reveal">
+    <div class="card">
+      <h2 class="section-title">🎬 관람 예약하기</h2>
+      <p class="section-desc">함께 볼 수 있는지 알려주세요. 좌석 확보를 위해 미리 알려주시면 좋아요.</p>
+      <div class="btn-row">
+        <button id="rsvp-yes" class="btn btn-primary shake-hover" type="button">관람 신청할게요 🍿</button>
+        <button id="share-btn" class="btn btn-secondary shake-hover" type="button">🔗 초대장 링크 복사</button>
+      </div>
+      <p class="share-status hidden" id="share-status" role="status"></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>🕸️ 자정에 스크린 앞에서 만나요 🕸️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
