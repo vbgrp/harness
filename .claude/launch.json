@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8843", "--directory", "apps/todak/TODAK Animal Hospital Design System"],
       "port": 8843
+    },
+    {
+      "name": "blog-home",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8844"],
+      "port": 8844
     }
   ]
 }
