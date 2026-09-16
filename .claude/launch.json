@@ -12,6 +12,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8844"],
       "port": 8844
+    },
+    {
+      "name": "todak-shop",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8845", "--directory", "apps/todak-shop"],
+      "port": 8845
     }
   ]
 }

@@ -16,7 +16,36 @@
 
 /* ===== 900px 이상 — 태블릿 가로 / 데스크톱: 좌(갤러리+구매)·우(정보) 2단 그리드 ===== */
 @media (min-width: 900px) {
-  .topbar { padding: 0 24px; }
+  /* overflow-x:hidden은 아래 .topbar::after의 100vw 풀블리드 선이
+     스크롤바 폭만큼 가로 스크롤을 만드는 것을 막기 위함이다(html에도 걸어야
+     실제 뷰포트 스크롤 박스까지 적용된다). */
+  html { overflow-x: hidden; }
+  body { background: var(--white); overflow-x: hidden; }
+
+  /* 컨테이너 좌우 테두리 제거 — .page의 box-shadow가 4면 테두리 역할을 했는데,
+     PC에서는 body 배경도 흰색이라 좌우 테두리만 어중간하게 떠 보여서 없앤다. */
+  .page { box-shadow: none; }
+
+  .topbar {
+    padding: 0 24px;
+    background: var(--white);
+    backdrop-filter: none;
+    border-bottom: none;
+  }
+
+  /* 헤더 아래 1px 구분선을 뷰포트 100% 너비로 확장(풀블리드).
+     .topbar 자체는 .page 폭(1200px 이상에서는 1160px로 중앙 정렬)에 묶여 있어
+     border-bottom만으로는 화면 끝까지 닿지 않으므로 의사요소로 뷰포트 전체 너비만큼 그린다. */
+  .topbar::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: var(--border-subtle);
+  }
 
   .layout {
     display: grid;
@@ -26,28 +55,26 @@
     align-items: start;
   }
 
-  /* DOM 순서는 그대로 두고 grid-column/grid-row 배치만으로 좌우 분리 */
-  .gallery { grid-column: 1; grid-row: 1; }
-  .block { grid-column: 2; }
-  .tail { grid-column: 2; }
+  /* 갤러리(왼쪽)와 정보 묶음(.info-col, 오른쪽)을 그리드 아이템 각 1개씩으로 분리한다.
+     이전에는 .block 각각을 개별 그리드 아이템으로 두었는데, 그 경우 auto-placement가
+     head를 갤러리와 같은 1행에 배치해 버려 행 높이가 갤러리(더 큼) 기준으로 늘어나고
+     head 아래로 큰 빈 여백이 생기는 문제가 있었다. 오른쪽 콘텐츠를 하나의 래퍼로
+     묶어 일반 블록 흐름으로 쌓으면 왼쪽 컬럼 높이와 무관하게 자체 여백만으로 이어진다. */
+  .gallery { grid-column: 1; }
+  .info-col { grid-column: 2; }
 
+  /* 구매 바(.buybar)는 이제 .options 섹션 안(수량/합계 바로 아래)에 중첩되어 있어
+     그리드 아이템이 아니다 — 좌측 갤러리 컬럼에 떠서 아래쪽에 빈 공간을 남기던
+     문제를 없애기 위해, PC에서는 옵션 섹션의 일부처럼 이어지는 카드로 배치한다. */
   .buybar {
-    grid-column: 1;
-    /* `.layout`에 grid-template-rows를 명시하지 않아 행은 전부 암시적 트랙이다.
-       이 경우 `-1`은 "명시적 그리드"의 마지막 줄(=1번째 줄, 트랙이 0개이므로)로 해석되어
-       `2 / -1`이 `2 / 1`로 역전 → 자동 교정되며 1행(갤러리와 동일 행)으로 붕괴해
-       구매 바가 갤러리 위에 겹쳐 보이는 버그가 있었다. 큰 span으로 2행부터 충분히 아래까지
-       걸치게 해 회피한다(비어 있는 암시적 트랙은 높이 0이라 여백에 영향 없음). */
-    grid-row: 2 / span 30;
-    position: sticky;
-    top: 24px;
-    align-self: start;
+    position: static;
     left: auto;
     right: auto;
     bottom: auto;
+    margin-top: 20px;
+    padding: 16px 20px;
     background: var(--white);
     backdrop-filter: none;
-    border-top: none;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-sm);
