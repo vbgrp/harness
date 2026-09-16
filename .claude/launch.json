@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "todak-design-system",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8843", "--directory", "apps/todak/TODAK Animal Hospital Design System"],
+      "port": 8843
+    }
+  ]
+}

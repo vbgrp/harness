@@ -1,0 +1,15 @@
+:root{
+/* Surfaces */
+--surface-page:var(--white);--surface-card:var(--white);--surface-sunken:var(--line-100);
+--surface-brand:var(--frost-800);--surface-brand-soft:var(--frost-100);--surface-accent-soft:var(--buttercup-100);--surface-calm:var(--frost-100);--surface-mint-soft:var(--mint-100);
+--surface-brand-light:var(--frost-500);
+/* Text */
+--text-body:var(--ink-900);--text-muted:var(--ink-600);--text-faint:var(--ink-400);--text-on-brand:var(--white);--text-brand:var(--frost-900);--text-cta:var(--spicy-700);
+/* Lines */
+--border-subtle:var(--line-200);--border-strong:var(--frost-300);--border-field:var(--line-200);
+/* Actions */
+--action-primary-bg:var(--spicy-500);--action-primary-bg-hover:var(--spicy-700);--action-primary-fg:var(--white);
+--action-secondary-bg:var(--frost-800);--action-secondary-bg-hover:var(--frost-900);--action-secondary-fg:var(--white);
+--action-quiet-bg:var(--frost-100);--action-quiet-fg:var(--frost-900);
+--focus-ring:var(--ring-focus);
+}

@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core — Button, Badge, Tag, Card" subtitle="Pill actions, status pills, chips and card surfaces" -->
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:20px 24px;background:var(--white);font-family:var(--font-body)}.lbl{font-size:11px;color:var(--ink-400);margin:0 0 8px;font-family:var(--font-en);letter-spacing:.06em;text-transform:uppercase}.rw{display:flex;align-items:center;gap:12px;flex-wrap:wrap}</style></head>
+<body><div id="root"></div>
+<script type="text/babel">
+window.__TODAK_ASSETS__='../../assets/';
+const { Button, IconButton, Badge, Tag, Card, Icon } = window.TODAKAnimalHospitalDesignSystem_299606;
+
+function Demo(){const [sel,setSel]=React.useState('예방접종');return(<div style={{display:'grid',gap:18}}>
+<div><p className="lbl">Button · variants</p><div className="rw">
+<Button variant="primary" icon="calendar-check">진료 예약하기</Button>
+<Button variant="secondary" icon="phone">전화 문의</Button>
+<Button variant="outline">진료 안내</Button>
+<Button variant="quiet">내 반려동물</Button>
+<Button variant="ghost">더보기</Button>
+<Button variant="primary" disabled>마감</Button></div></div>
+<div><p className="lbl">Sizes · icon buttons</p><div className="rw">
+<Button size="sm">sm</Button><Button size="md">md</Button><Button size="lg">lg</Button>
+<span style={{width:12}}/>
+<IconButton name="phone" variant="solid" label="전화"/><IconButton name="heart" variant="quiet" label="찜"/><IconButton name="share-2" variant="outline" label="공유"/><IconButton name="more-horizontal" variant="ghost" label="더보기"/></div></div>
+<div><p className="lbl">Badge · Tag</p><div className="rw">
+<Badge tone="mint" icon="check">접종 완료</Badge><Badge tone="brand" icon="calendar">예약 확정</Badge><Badge tone="accent" icon="sprout">신규 오픈</Badge><Badge tone="cta" icon="siren">응급</Badge><Badge tone="calm">대기 3명</Badge><Badge tone="neutral">종료</Badge>
+<span style={{width:12}}/>
+{['예방접종','건강검진','치과'].map(t=><Tag key={t} selected={sel===t} onClick={()=>setSel(t)}>{t}</Tag>)}<Tag onRemove={()=>{}}>피부</Tag></div></div>
+<div><p className="lbl">Card · surfaces</p><div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
+<Card icon="stethoscope" title="건강검진" subtitle="나이에 맞춘 정기 검진" padding={18} interactive/>
+<Card icon="syringe" title="예방접종" subtitle="시기별 접종 스케줄 관리" padding={18} surface="calm"/>
+<Card icon="sprout" title="토닥 케어" subtitle="퇴원 후 회복까지 함께" padding={18} surface="brand"/></div></div>
+</div>)}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

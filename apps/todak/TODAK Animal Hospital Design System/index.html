@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TODAK Animal Hospital — Design System</title>
+<link rel="icon" href="assets/symbol-todak.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+  :root{
+    --nav-w: 240px;
+    --header-h: 64px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--white);color:var(--text-body);font-family:var(--font-body)}
+
+  /* Header */
+  header.top{
+    position:sticky;top:0;z-index:20;height:var(--header-h);
+    display:flex;align-items:center;gap:12px;
+    padding:0 20px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-subtle);
+  }
+  header.top img{height:32px;display:block}
+  header.top .title{display:flex;flex-direction:column;line-height:1.2}
+  header.top .title strong{font-size:14px;font-weight:600;color:var(--text-brand)}
+  header.top .title span{font-family:var(--font-en);font-size:11px;letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--text-faint)}
+  header.top .search{margin-left:auto;display:flex;align-items:center}
+  header.top input[type="search"]{
+    width:220px;max-width:44vw;padding:8px 14px;border-radius:var(--radius-pill);
+    border:1.5px solid var(--border-field);font-size:13px;font-family:var(--font-body);
+    background:var(--surface-tint);color:var(--text-body);outline:none;transition:var(--transition-base);
+  }
+  header.top input[type="search"]:focus{border-color:var(--frost-500);box-shadow:var(--ring-focus);background:var(--white)}
+
+  /* Layout */
+  .layout{display:flex;align-items:flex-start;max-width:1440px;margin:0 auto}
+  nav.side{
+    position:sticky;top:var(--header-h);width:var(--nav-w);flex:0 0 var(--nav-w);
+    height:calc(100vh - var(--header-h));overflow-y:auto;
+    padding:20px 12px 40px;border-right:1px solid var(--border-subtle);
+  }
+  nav.side a{
+    display:flex;justify-content:space-between;gap:8px;align-items:center;
+    padding:8px 12px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;
+    color:var(--text-muted);text-decoration:none;transition:var(--transition-base);
+  }
+  nav.side a:hover{background:var(--surface-brand-soft);color:var(--text-brand)}
+  nav.side a.active{background:var(--surface-brand-soft);color:var(--text-brand);font-weight:600}
+  nav.side a .count{font-family:var(--font-en);font-size:11px;color:var(--text-faint)}
+  nav.side a.active .count{color:var(--text-brand)}
+
+  main{flex:1;min-width:0;padding:8px 28px 80px}
+
+  .intro{padding:28px 4px 8px;max-width:66ch}
+  .intro h1{font-size:var(--text-xl);font-weight:700;letter-spacing:var(--ls-display);margin:0 0 8px;color:var(--text-brand)}
+  .intro p{font-size:14px;line-height:var(--lh-relaxed);color:var(--text-muted);margin:0}
+
+  section.ds-group{padding:32px 0 8px;border-top:1px solid var(--border-subtle);scroll-margin-top:calc(var(--header-h) + 12px)}
+  section.ds-group:first-of-type{border-top:none}
+  section.ds-group h2{
+    display:flex;align-items:baseline;gap:10px;
+    font-size:var(--text-lg);font-weight:700;letter-spacing:var(--ls-display);margin:0 0 4px;color:var(--ink-900)
+  }
+  section.ds-group h2 .en{font-family:var(--font-en);font-size:11px;font-weight:600;letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--frost-600)}
+  section.ds-group > p.lead{font-size:13px;color:var(--text-faint);margin:0 0 18px}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .card-grid.wide{grid-template-columns:1fr}
+
+  article.card-tile{
+    border:1px solid var(--border-subtle);border-radius:var(--radius-card);
+    background:var(--surface-card);box-shadow:var(--shadow-xs);overflow:hidden;
+    display:flex;flex-direction:column;transition:var(--transition-base);
+  }
+  article.card-tile:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+  article.card-tile header{padding:14px 16px 10px}
+  article.card-tile h3{margin:0 0 3px;font-size:13px;font-weight:600;color:var(--ink-900)}
+  article.card-tile p{margin:0;font-size:11.5px;line-height:1.5;color:var(--text-faint)}
+
+  .card-frame{position:relative;width:100%;overflow:hidden;background:var(--surface-tint);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
+  .card-frame iframe{position:absolute;top:0;left:0;border:0;transform-origin:top left;pointer-events:none;background:var(--white)}
+
+  a.open-link{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:9px;font-size:12px;font-weight:500;color:var(--text-brand);text-decoration:none;
+  }
+  a.open-link:hover{background:var(--surface-brand-soft)}
+
+  .empty-state{display:none;padding:60px 4px;text-align:center;color:var(--text-faint);font-size:14px}
+  .empty-state.show{display:block}
+
+  @media (max-width: 860px){
+    :root{--nav-w:0px}
+    nav.side{display:none}
+    main{padding:4px 16px 60px}
+    header.top input[type="search"]{width:100%;max-width:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="assets/symbol-todak.png" alt="">
+  <div class="title">
+    <strong>토닥 동물병원 Design System</strong>
+    <span>TODAK Animal Hospital</span>
+  </div>
+  <div class="search">
+    <input type="search" id="search" placeholder="검색 · 예: button, frost, radius" autocomplete="off">
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side" id="side-nav"></nav>
+
+  <main>
+    <div class="intro">
+      <h1>디자인 시스템 요소 한눈에 보기</h1>
+      <p>브랜드, 컬러, 타이포그래피, 스페이싱, 컴포넌트, UI 키트까지 이 디자인 시스템을 구성하는 모든 요소를 한 페이지에서 확인할 수 있습니다. 각 카드는 실제 스펙 파일(<code>.card.html</code>)을 그대로 미리보기하며, "새 창에서 열기"로 원본 크기를 볼 수 있습니다.</p>
+    </div>
+
+    <div id="groups"></div>
+    <p class="empty-state" id="empty-state">검색 결과가 없습니다.</p>
+  </main>
+</div>
+
+<script>
+(function(){
+  var GROUPS = [
+    {
+      key: "brand", title: "Brand", en: "브랜드",
+      lead: "심볼, 워드마크, 슬로건, 원본 브랜드 시트.",
+      items: [
+        { path: "guidelines/brand-logo.card.html", name: "Primary lockup", subtitle: "심볼 + 국문 워드마크 + 영문 서브타이틀, 중앙 정렬", w: 700, h: 260 },
+        { path: "guidelines/brand-symbol.card.html", name: "Symbol & wordmark", subtitle: "새싹 + 마주보는 강아지·고양이, 텍스트 전용 배리언트", w: 700, h: 200 },
+        { path: "guidelines/brand-slogan.card.html", name: "Slogan lockup", subtitle: "Pretendard Bold 국문 슬로건, 트래킹된 영문 서브타이틀", w: 700, h: 180 },
+        { path: "guidelines/brand-logo-frost.card.html", name: "Logo on brand grounds", subtitle: "frost-800 및 Soft Mint 패널 위 화이트 녹아웃", w: 700, h: 220 },
+        { path: "guidelines/brand-sheet.card.html", name: "Source brand sheet", subtitle: "제공된 레퍼런스 — 컬러 · 폰트 · 에셋 이름", w: 700, h: 400 }
+      ]
+    },
+    {
+      key: "colors", title: "Colors", en: "컬러",
+      lead: "브랜드/액션/캄/뉴트럴/상태 컬러와 조합 규칙.",
+      items: [
+        { path: "guidelines/color-brand.card.html", name: "Brand — Frost", subtitle: "#9FBDE1 is the brand colour; deeper steps carry text and solid actions", w: 700, h: 150 },
+        { path: "guidelines/color-orange.card.html", name: "Action — Spicy Orange", subtitle: "#EA6903 · 주요 CTA와 응급 강조 전용, 배경 면으로는 사용 금지", w: 700, h: 150 },
+        { path: "guidelines/color-calm.card.html", name: "Calm — Soft Mint", subtitle: "완료 상태, 편안한 서피스, 1색 인쇄용", w: 700, h: 150 },
+        { path: "guidelines/color-accent.card.html", name: "Accent — Buttercup", subtitle: "새싹/발바닥 하이라이트, 배지에 소량만 사용", w: 700, h: 150 },
+        { path: "guidelines/color-neutral.card.html", name: "Neutrals", subtitle: "화이트 배경, 차가운 잉크 텍스트, 헤어라인 보더 — 크림톤 없음", w: 700, h: 150 },
+        { path: "guidelines/color-status.card.html", name: "Semantic status", subtitle: "상태 컬러는 브랜드 팔레트에서만 파생 — 새 색상 없음", w: 700, h: 150 },
+        { path: "guidelines/color-pairings.card.html", name: "Surface pairings", subtitle: "승인된 텍스트-서피스 조합", w: 700, h: 180 }
+      ]
+    },
+    {
+      key: "type", title: "Type", en: "타이포그래피",
+      lead: "Pretendard Variable · Montserrat · Nunito 스케일과 웨이트.",
+      items: [
+        { path: "guidelines/type-display.card.html", name: "Display scale", subtitle: "Pretendard Bold, 타이트한 리딩, -0.02em 트래킹", w: 700, h: 200 },
+        { path: "guidelines/type-body.card.html", name: "Body scale", subtitle: "Pretendard Regular/Medium, 국문 1.55 리딩", w: 700, h: 210 },
+        { path: "guidelines/type-english.card.html", name: "English — Montserrat / Nunito", subtitle: "영문 서브타이틀과 숫자, 대문자 트래킹 +0.14em", w: 700, h: 180 },
+        { path: "guidelines/type-weights.card.html", name: "Weights & leading", subtitle: "400 본문 · 500 UI · 600 타이틀 · 700 디스플레이 전용", w: 700, h: 160 }
+      ]
+    },
+    {
+      key: "spacing", title: "Spacing & Foundations", en: "스페이싱 · 파운데이션",
+      lead: "스케일, 라운드, 스트로크, 엘리베이션, 모션.",
+      items: [
+        { path: "guidelines/spacing-scale.card.html", name: "Spacing scale", subtitle: "4px 베이스, 24px가 기본 카드/섹션 리듬", w: 700, h: 170 },
+        { path: "guidelines/spacing-inuse.card.html", name: "Spacing in use", subtitle: "카드: 24 패딩 · 16 스택 · 12 인라인 · 8 라벨 간격", w: 700, h: 200 },
+        { path: "guidelines/radius.card.html", name: "Radius", subtitle: "8 sm · 12 field · 16 card · 24 modal · pill for actions", w: 700, h: 170 },
+        { path: "guidelines/stroke.card.html", name: "Stroke weights", subtitle: "로고 2.5px · 아이콘 2px · 헤어라인 보더 1px — 더 얇게 금지", w: 700, h: 150 },
+        { path: "guidelines/elevation.card.html", name: "Elevation", subtitle: "잉크 톤의 부드러운 그림자 — 검정 금지, 하드섀도 금지", w: 700, h: 180 },
+        { path: "guidelines/motion.card.html", name: "Motion", subtitle: "부드러운 이징, 120–420ms; 리프트와 페이드, 바운스 금지", w: 700, h: 170 }
+      ]
+    },
+    {
+      key: "components", title: "Components", en: "컴포넌트",
+      lead: "React 컴포넌트 라이브러리 — 그룹별 실사용 데모.",
+      items: [
+        { path: "components/brand/brand.card.html", name: "Brand — Logo", subtitle: "양쪽 톤의 로고 배리언트: 락업 · 심볼 · 워드마크", w: 700, h: 220 },
+        { path: "components/core/core.card.html", name: "Core — Button, Badge, Tag, Card", subtitle: "필 액션, 상태 필, 칩, 카드 서피스", w: 700, h: 340 },
+        { path: "components/forms/forms.card.html", name: "Forms — Field, Input, Select, Checkbox, Radio, Switch", subtitle: "12px 라운드 필드, 프로스트 포커스 링", w: 700, h: 360 },
+        { path: "components/feedback/feedback.card.html", name: "Feedback — Toast, Dialog, Tooltip", subtitle: "소프트 틴트 알림과 프로스트 스크림 모달", w: 700, h: 300 },
+        { path: "components/navigation/navigation.card.html", name: "Navigation — Tabs, Stepper", subtitle: "필/언더라인 탭 그룹과 예약 스텝퍼", w: 700, h: 220 }
+      ]
+    },
+    {
+      key: "screens", title: "UI Kits", en: "UI 키트",
+      lead: "토큰과 컴포넌트로 조립한 화면 단위 제안.",
+      wide: true,
+      items: [
+        { path: "ui_kits/website/index.html", name: "토닥 동물병원 웹사이트", subtitle: "Home · 진료안내 · 예약 · 오시는 길 — 클릭 가능", w: 1280, h: 860 },
+        { path: "ui_kits/owner_app/index.html", name: "보호자 앱", subtitle: "홈 · 예약 · 기록 · 알림 — 탭 바 작동", w: 1280, h: 880 }
+      ]
+    }
+  ];
+
+  var groupsEl = document.getElementById("groups");
+  var navEl = document.getElementById("side-nav");
+  var emptyEl = document.getElementById("empty-state");
+
+  GROUPS.forEach(function(group){
+    var navLink = document.createElement("a");
+    navLink.href = "#group-" + group.key;
+    navLink.innerHTML = "<span>" + group.title + "</span><span class=\"count\">" + group.items.length + "</span>";
+    navEl.appendChild(navLink);
+
+    var section = document.createElement("section");
+    section.className = "ds-group";
+    section.id = "group-" + group.key;
+
+    var h2 = document.createElement("h2");
+    h2.innerHTML = group.title + " <span class=\"en\">" + group.en + "</span>";
+    section.appendChild(h2);
+
+    var lead = document.createElement("p");
+    lead.className = "lead";
+    lead.textContent = group.lead;
+    section.appendChild(lead);
+
+    var grid = document.createElement("div");
+    grid.className = "card-grid" + (group.wide ? " wide" : "");
+
+    group.items.forEach(function(item){
+      var tile = document.createElement("article");
+      tile.className = "card-tile";
+      tile.dataset.search = (item.name + " " + item.subtitle + " " + group.title).toLowerCase();
+
+      var header = document.createElement("header");
+      var h3 = document.createElement("h3");
+      h3.textContent = item.name;
+      var p = document.createElement("p");
+      p.textContent = item.subtitle;
+      header.appendChild(h3);
+      header.appendChild(p);
+
+      var frame = document.createElement("div");
+      frame.className = "card-frame";
+      frame.dataset.w = item.w;
+      frame.dataset.h = item.h;
+      var iframe = document.createElement("iframe");
+      iframe.src = item.path;
+      iframe.loading = "lazy";
+      iframe.title = item.name;
+      frame.appendChild(iframe);
+
+      var link = document.createElement("a");
+      link.className = "open-link";
+      link.href = item.path;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = "새 창에서 열기 ↗";
+
+      tile.appendChild(header);
+      tile.appendChild(frame);
+      tile.appendChild(link);
+      grid.appendChild(tile);
+    });
+
+    section.appendChild(grid);
+    groupsEl.appendChild(section);
+  });
+
+  function scaleFrames(){
+    document.querySelectorAll(".card-frame").forEach(function(el){
+      var w = parseInt(el.dataset.w, 10);
+      var h = parseInt(el.dataset.h, 10);
+      var containerWidth = el.clientWidth;
+      var scale = containerWidth / w;
+      var iframe = el.querySelector("iframe");
+      iframe.style.width = w + "px";
+      iframe.style.height = h + "px";
+      iframe.style.transform = "scale(" + scale + ")";
+      el.style.height = Math.round(h * scale) + "px";
+    });
+  }
+
+  var resizeTimer;
+  window.addEventListener("resize", function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(scaleFrames, 120);
+  });
+  window.addEventListener("load", scaleFrames);
+  scaleFrames();
+  setTimeout(scaleFrames, 300);
+
+  var navLinks = navEl.querySelectorAll("a");
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section.ds-group"));
+  function updateActiveNav(){
+    var pos = window.scrollY + 90;
+    var current = sections[0];
+    sections.forEach(function(sec){
+      if(sec.offsetTop <= pos) current = sec;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle("active", a.getAttribute("href") === "#" + current.id);
+    });
+  }
+  window.addEventListener("scroll", updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  var searchInput = document.getElementById("search");
+  searchInput.addEventListener("input", function(){
+    var q = searchInput.value.trim().toLowerCase();
+    var anyVisible = false;
+    sections.forEach(function(sec){
+      var tiles = sec.querySelectorAll(".card-tile");
+      var sectionHasMatch = false;
+      tiles.forEach(function(tile){
+        var match = !q || tile.dataset.search.indexOf(q) !== -1;
+        tile.style.display = match ? "" : "none";
+        if(match) sectionHasMatch = true;
+      });
+      sec.style.display = sectionHasMatch ? "" : "none";
+      if(sectionHasMatch) anyVisible = true;
+    });
+    emptyEl.classList.toggle("show", !anyVisible);
+    setTimeout(scaleFrames, 30);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Forms — Field, Input, Select, Checkbox, Radio, Switch" subtitle="12px-radius fields with frost focus ring" -->
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:20px 24px;background:var(--white);font-family:var(--font-body)}.lbl{font-size:11px;color:var(--ink-400);margin:0 0 8px;font-family:var(--font-en);letter-spacing:.06em;text-transform:uppercase}.rw{display:flex;align-items:center;gap:12px;flex-wrap:wrap}</style></head>
+<body><div id="root"></div>
+<script type="text/babel">
+window.__TODAK_ASSETS__='../../assets/';
+const { Field, Input, Textarea, Select, Checkbox, Radio, Switch } = window.TODAKAnimalHospitalDesignSystem_299606;
+
+function Demo(){const [c,setC]=React.useState(true),[r,setR]=React.useState('dog'),[s,setS]=React.useState(true);return(<div style={{display:'grid',gap:16}}>
+<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+<Field label="보호자 이름" required><Input placeholder="홍길동"/></Field>
+<Field label="반려동물 검색" hint="이름 또는 등록번호"><Input icon="search" placeholder="토리"/></Field>
+<Field label="진료 항목"><Select placeholder="선택해주세요" options={['예방접종','건강검진','치과','피부']}/></Field>
+<Field label="연락처" error="번호 형식을 확인해주세요"><Input invalid defaultValue="010-12"/></Field>
+</div>
+<Field label="증상 메모" hint="편하게 적어주세요"><Textarea rows={2} placeholder="어제부터 밥을 잘 안 먹어요"/></Field>
+<div className="rw" style={{gap:24}}>
+<Checkbox label="개인정보 수집 동의" checked={c} onChange={setC}/>
+<Radio name="sp" value="dog" label="강아지" checked={r==='dog'} onChange={setR}/>
+<Radio name="sp" value="cat" label="고양이" checked={r==='cat'} onChange={setR}/>
+<Switch label="접종 알림 받기" checked={s} onChange={setS}/>
+</div></div>)}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

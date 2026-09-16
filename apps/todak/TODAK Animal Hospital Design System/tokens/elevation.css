@@ -1,0 +1,11 @@
+:root{
+/* Warm, low-contrast shadows — never black; tinted with the cool ink */
+--shadow-xs:0 1px 2px rgba(34,43,56,.05);
+--shadow-sm:0 2px 8px rgba(34,43,56,.06);
+--shadow-md:0 6px 20px rgba(34,43,56,.08);
+--shadow-lg:0 16px 40px rgba(34,43,56,.10);
+--shadow-brand:0 8px 24px rgba(58,95,135,.18);
+--shadow-cta:0 6px 16px rgba(234,105,3,.24);
+--ring-focus:0 0 0 3px rgba(159,189,225,.55); /* @kind shadow */
+--inset-field:inset 0 1px 2px rgba(34,43,56,.04); /* @kind shadow */
+}

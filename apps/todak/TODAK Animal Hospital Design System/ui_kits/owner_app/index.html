@@ -1,0 +1,32 @@
+<!-- @dsCard group="Owner App" viewport="1280x880" name="보호자 앱" subtitle="홈 · 예약 · 기록 · 알림 — tab bar is live" -->
+<!-- @startingPoint section="Owner App" subtitle="Pet owner mobile app: home, reservation, records" viewport="1280x880" -->
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>토닥 보호자 앱</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--white);font-family:var(--font-body)}</style></head>
+<body><div id="root"></div>
+<script>window.__TODAK_ASSETS__='../../assets/';</script>
+<script type="text/babel" src="Shell.jsx"></script>
+<script type="text/babel" src="Screens.jsx"></script>
+<script type="text/babel">
+function App(){
+  const [tab,setTab]=React.useState('홈');
+  return (<Phone>
+    {tab==='홈'?<HomeScreen onTab={setTab}/>:null}
+    {tab==='예약'?<ReserveScreen/>:null}
+    {tab==='기록'?<RecordScreen/>:null}
+    {tab==='알림'?<AlertScreen/>:null}
+    <TabBar tab={tab} onTab={setTab}/>
+  </Phone>);
+}
+function Stage(){
+  return (<div style={{display:'flex',gap:36,justifyContent:'center',padding:40,flexWrap:'wrap'}}>
+    <App/>
+    <Phone label="진료 기록"><RecordScreen/><TabBar tab="기록" onTab={()=>{}}/></Phone>
+    <Phone label="알림"><AlertScreen/><TabBar tab="알림" onTab={()=>{}}/></Phone>
+  </div>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Stage/>);
+</script></body></html>
