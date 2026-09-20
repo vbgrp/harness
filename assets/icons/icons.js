@@ -7,12 +7,15 @@
  * brands, commerce, time, people, media, devices, weather, dev and shapes.
  * See Icons.names for the full list, or open preview.html to browse.
  *
- * Usage:
+ * Easiest usage — just add a data-icon attribute, no extra script needed:
  *   <script src="/assets/icons/icons.js"></script>
- *   <span style="width:20px;height:20px;display:inline-block">
- *     <script>document.write(Icons.svg('home'))</script>
- *   </span>
- *   // or in JS: el.innerHTML = Icons.svg('home', { size: 24, color: '#4f6df5' })
+ *   <i data-icon="github"></i>
+ *   <i data-icon="github" data-icon-size="18" data-icon-color="#4f6df5"></i>
+ * These auto-render on page load. If you inject more HTML afterwards
+ * (e.g. from JS), call Icons.mount() to render any new ones.
+ *
+ * Manual usage (when you need the raw markup, e.g. inside a template string):
+ *   Icons.svg('home', { size: 24, color: '#4f6df5' })
  */
 (function (global) {
   'use strict';
@@ -224,7 +227,37 @@
       inner + '</svg>';
   }
 
-  var Icons = { svg: svg, names: Object.keys(ICONS) };
+  /**
+   * Auto-render every element with a `data-icon` attribute, e.g.
+   *   <i data-icon="github"></i>
+   *   <i data-icon="github" data-icon-size="18" data-icon-color="#4f6df5"></i>
+   * Runs automatically once the DOM is ready, and again for any new
+   * elements if you call Icons.mount() after injecting more HTML.
+   * @param {ParentNode} [root]
+   */
+  function mount(root) {
+    (root || document).querySelectorAll('[data-icon]').forEach(function (el) {
+      if (el.hasAttribute('data-icon-mounted')) return;
+      el.innerHTML = svg(el.getAttribute('data-icon'), {
+        size: parseInt(el.getAttribute('data-icon-size'), 10) || 20,
+        color: el.getAttribute('data-icon-color') || 'currentColor',
+        strokeWidth: parseFloat(el.getAttribute('data-icon-stroke')) || 2,
+      });
+      if (!el.style.display) el.style.display = 'inline-flex';
+      if (!el.style.verticalAlign) el.style.verticalAlign = 'middle';
+      el.setAttribute('data-icon-mounted', '');
+    });
+  }
+
+  var Icons = { svg: svg, mount: mount, names: Object.keys(ICONS) };
+
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { mount(); });
+    } else {
+      mount();
+    }
+  }
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Icons;
