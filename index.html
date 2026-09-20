@@ -67,16 +67,18 @@
   }
   .apps-intro {
     margin: 0 0 24px;
+  }
+  .apps-intro-title {
+    margin: 0;
     color: var(--muted);
   }
-  .apps-intro [data-icon] {
+  .apps-intro-title [data-icon] {
     margin-right: 8px;
     position: relative;
     top: 3px;
   }
-  .apps-intro .apps-intro-date {
-    display: block;
-    margin-top: 32px;
+  .apps-intro-date {
+    margin: 32px 0 0;
     font-size: 1.3em;
     font-weight: 700;
     color: var(--text);
@@ -160,7 +162,10 @@
 
   <main>
     <section id="apps">
-      <p class="apps-intro"><i data-icon="github" data-icon-size="20"></i>AI로 만들어보기!<span class="apps-intro-date">2026년 9월</span></p>
+      <div class="apps-intro">
+        <p class="apps-intro-title"><i data-icon="github" data-icon-size="20"></i>AI로 만들어보기!</p>
+        <p class="apps-intro-date">2026년 9월</p>
+      </div>
       <div class="app-grid">
         <a class="app-card" href="apps/cityscore/index.html" target="_blank" rel="noopener">
           <div class="preview">
