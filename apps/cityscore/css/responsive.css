@@ -1,0 +1,87 @@
+/**
+ * responsive.css — min-width 브레이크포인트 전용 (누적 적용). 그리드 컬럼 수/헤더 배치만 다룬다.
+ */
+
+/* ---- 480px: 카드 2열, 검색창 폭 확대 ---- */
+@media (min-width: 480px) {
+  .city-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---- 768px: 히어로/비교 2컬럼, 카드 3열 ---- */
+@media (min-width: 768px) {
+  .header-top {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+  .search { flex: 1; }
+  .main-nav { flex-shrink: 0; }
+
+  .hero__inner {
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .rising-cities__head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .city-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .compare__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    gap: 40px;
+  }
+
+  .reviews__head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .review-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .cta-banner__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-cols {
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  }
+  .footer-links {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+/* ---- 1024px: 헤더 한 줄 정렬, 카드 auto-fill, 푸터 4컬럼(이미 768px에서 적용됨) ---- */
+@media (min-width: 1024px) {
+  .header-top {
+    flex-wrap: nowrap;
+  }
+
+  .city-grid {
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  }
+}
+
+/* ---- 1200px: 컨테이너 중앙 정렬 고정 (container-max 도달) ---- */
+@media (min-width: 1200px) {
+  .container {
+    max-width: var(--container-max);
+    margin-inline: auto;
+  }
+}

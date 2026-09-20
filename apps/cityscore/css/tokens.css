@@ -1,0 +1,45 @@
+/**
+ * tokens.css — 디자인 토큰(커스텀 프로퍼티)만 정의한다. 셀렉터 스타일은 두지 않는다.
+ */
+:root {
+  /* color */
+  --color-purple: #5B2EC4;
+  --color-purple-dark: #3D1B8C;
+  --color-purple-mid: #7A57D8;
+  --color-purple-grey: #8E8AA6;
+  --color-bg-purple-deep: #2B1B52;
+  --color-bg-purple-deep2: #33205F;
+  --color-bg-purple-soft: #EDE9FB;
+  --color-bg-announce: #F0EDFA;
+  --color-chip-bg: #F5F3FB;
+  --color-chip-bg-hover: #E9E4F8;
+  --color-beige-bg: #F7F1E4;
+  --color-beige-border: #E6DCC4;
+  --color-beige-accent: #9A7B3C;
+  --color-text: #1A1A22;
+  --color-text-muted: #6B6880;
+  --color-text-faint: #8A86A0;
+  --color-text-announce: #5C5870;
+  --color-border: #EAE8F0;
+  --color-border-light: #F1EFF6;
+  --color-border-field: #E2E0EA;
+  --color-border-hover: #C9BEEB;
+  --color-white: #FFFFFF;
+  --color-placeholder-1: #EFEDF5;
+  --color-placeholder-2: #E7E4F0;
+
+  /* typography */
+  --font-kr: 'Pretendard', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* radius / shadow / layout */
+  --radius-card: 12px;
+  --radius-card-lg: 14px;
+  --radius-pill: 20px;
+  --radius-btn: 8px;
+  --shadow-card: 0 2px 14px rgba(40,20,90,0.07);
+  --shadow-card-beige: 0 2px 14px rgba(80,60,20,0.08);
+  --shadow-hover: 0 6px 20px rgba(40,20,90,0.09);
+  --container-max: 1200px;
+  --container-pad: 24px;
+}

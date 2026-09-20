@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>시티스코어 — 디지털 노마드를 위한 국내 도시 한달살기 추천</title>
+<meta name="description" content="생활비·인터넷 속도·코워킹 접근성·공기질·노마드 커뮤니티 5개 지표로 국내 도시를 점수화한 한달살기 추천 서비스" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- 상단 공지 바 -->
+<div class="announce-bar">
+  <div class="container announce-bar__inner">
+    <div class="announce-bar__left">
+      <span class="badge-new">NEW</span>
+      <span>9월 도시 데이터가 업데이트되었습니다 · 전국 38개 도시</span>
+    </div>
+    <div class="announce-bar__right">
+      <a href="#">데이터 제보</a>
+      <a href="#">고객센터</a>
+      <a href="#">로그인</a>
+      <a href="#" class="announce-bar__signup">회원가입</a>
+    </div>
+  </div>
+</div>
+
+<!-- 헤더 -->
+<header class="site-header">
+  <div class="container header-top">
+    <a href="#" class="logo">
+      <span class="logo__mark"></span>
+      <span class="logo__text">시티스코어</span>
+    </a>
+
+    <div class="search">
+      <span class="search__icon" aria-hidden="true"></span>
+      <label for="city-search" class="visually-hidden">도시 이름, 지역, 태그로 검색</label>
+      <input id="city-search" type="search" class="search__input" placeholder="도시 이름, 지역, #태그로 검색 — 예: 강릉, 제주, #서핑" autocomplete="off" />
+      <kbd class="search__kbd">⌘K</kbd>
+    </div>
+
+    <nav class="main-nav" aria-label="주요 메뉴">
+      <a href="#">도시 랭킹</a>
+      <a href="#">비교하기</a>
+      <a href="#">리뷰</a>
+      <a href="#">커뮤니티</a>
+    </nav>
+  </div>
+
+  <nav class="quick-tags" aria-label="빠른 태그" id="quickTags"></nav>
+</header>
+
+<main>
+  <!-- 히어로: 필터 카드 + 프로모 배너 -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="filter-card">
+        <h1 class="filter-card__title">어디에서<br />일하고 살아볼까요?</h1>
+        <p class="filter-card__desc">조건을 고르면 점수가 높은 도시부터 보여드려요</p>
+
+        <div class="filter-tabs" role="tablist" id="filterTabs"></div>
+
+        <div class="filter-fields">
+          <label class="filter-field">
+            <span class="filter-field__label">체류 기간</span>
+            <div class="filter-field__box">
+              <span>1개월 (한 달 살기)</span><span class="filter-field__arrow" aria-hidden="true">▾</span>
+            </div>
+          </label>
+          <label class="filter-field">
+            <span class="filter-field__label">월 예산</span>
+            <div class="filter-field__box">
+              <span>~ 120만원</span><span class="filter-field__arrow" aria-hidden="true">▾</span>
+            </div>
+          </label>
+          <div class="filter-field">
+            <span class="filter-field__label">중요하게 볼 항목</span>
+            <div class="criteria-chips" id="criteriaChips"></div>
+          </div>
+        </div>
+
+        <button type="button" class="filter-card__cta" id="matchCountBtn"></button>
+      </div>
+
+      <aside class="promo-card">
+        <div class="promo-card__stripes" aria-hidden="true"></div>
+        <div class="promo-card__content">
+          <div class="promo-card__eyebrow">2026 AUTUMN INDEX</div>
+          <div class="promo-card__headline">가을에 일하기 좋은<br />국내 도시 <span>TOP 10</span></div>
+          <div class="promo-card__desc">생활비 · 인터넷 속도 · 코워킹 접근성 · 공기질 · 노마드 커뮤니티<br />5개 지표를 실측 데이터와 리뷰로 점수화했습니다.</div>
+          <div class="promo-card__actions">
+            <a href="#" class="btn btn--white">랭킹 보러가기</a>
+            <a href="#" class="btn btn--outline-light">점수 산정 방식</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 도시 랭킹 -->
+  <section class="rising-cities">
+    <div class="container rising-cities__head">
+      <div>
+        <h2>이번 달 점수가 오른 도시 ↗</h2>
+        <p class="rising-cities__meta">최근 30일 리뷰 <span id="reviewCountLabel"></span>건과 실측 데이터 반영 · <span id="updatedAtLabel"></span> 기준</p>
+      </div>
+      <a href="#" class="rising-cities__all">전체 38개 도시 →</a>
+    </div>
+
+    <div class="container">
+      <div class="sort-bar" role="group" aria-label="정렬 기준" id="sortBar"></div>
+      <div class="city-grid" id="cityGrid"></div>
+    </div>
+  </section>
+
+  <!-- 비교 -->
+  <section class="compare">
+    <div class="container compare__inner">
+      <div class="compare__text">
+        <div class="compare__eyebrow">COMPARE</div>
+        <h2>두 도시를 나란히 놓고<br />숫자로 비교해보세요</h2>
+        <p>"강릉이 나을까, 제주가 나을까?" 개인 경험담 대신 생활비·인터넷·코워킹·공기질·커뮤니티 5개 지표를 같은 기준으로 놓고 봅니다.</p>
+        <div class="compare__picker">
+          <div class="compare__city">강릉 <span>82</span></div>
+          <span class="compare__vs">VS</span>
+          <div class="compare__city">제주시 <span>86</span></div>
+          <a href="#" class="btn btn--dark">비교표 열기</a>
+        </div>
+      </div>
+
+      <div class="compare-card" id="compareCard"></div>
+    </div>
+  </section>
+
+  <!-- 리뷰 -->
+  <section class="reviews">
+    <div class="container reviews__head">
+      <h2>먼저 살아본 사람들의 후기</h2>
+      <a href="#" class="reviews__all">리뷰 <span id="reviewCountLabel2"></span>건 모두 보기 →</a>
+    </div>
+    <div class="container review-grid" id="reviewGrid"></div>
+  </section>
+
+  <!-- CTA 배너 -->
+  <section class="cta-banner">
+    <div class="container cta-banner__inner">
+      <div>
+        <div class="cta-banner__title">내가 살아본 도시를 평가해주세요</div>
+        <div class="cta-banner__desc">3분이면 끝나는 5개 지표 평가. 다음 사람의 리서치 시간을 줄여줍니다.</div>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="#" class="btn btn--white">도시 평가하기</a>
+        <a href="#" class="btn btn--outline-light">노마드 커뮤니티</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-cols">
+    <div class="footer-about">
+      <div class="footer-about__brand">
+        <span class="logo__mark logo__mark--sm"></span>
+        <span>시티스코어</span>
+      </div>
+      <div class="footer-about__desc">대한민국 도시를 노마드의 눈으로 점수화합니다.<br />데이터 제보 · 제휴 문의 hello@cityscore.kr</div>
+    </div>
+    <div class="footer-links" id="footerLinks"></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom__inner">© 2026 CITYSCORE — DATA UPDATED <span id="updatedAtLabel2"></span></div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
