@@ -8,35 +8,70 @@
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    padding: 40px 24px;
+    padding: 40px 24px 80px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #fafafa;
     color: #222;
+  }
+  .head {
+    max-width: 1100px;
+    margin: 0 auto 24px;
   }
   h1 {
     font-size: 1.5rem;
     margin: 0 0 4px;
   }
   p.sub {
-    margin: 0 0 32px;
+    margin: 0 0 20px;
     color: #666;
     font-size: 0.9rem;
   }
+  #search {
+    width: 100%;
+    max-width: 360px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+  }
+  #search:focus {
+    border-color: #4f6df5;
+  }
+  #count {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #999;
+  }
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .category {
+    margin-top: 32px;
+  }
+  .category h2 {
+    font-size: 1rem;
+    color: #444;
+    margin: 0 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e5e5;
+  }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
   }
   .tile {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    padding: 20px 12px;
+    padding: 18px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
   }
@@ -45,12 +80,12 @@
     transform: translateY(-2px);
   }
   .tile .icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     color: #222;
   }
   .tile .name {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #666;
     text-align: center;
     word-break: break-all;
@@ -58,28 +93,105 @@
   .tile.copied .name {
     color: #4f6df5;
   }
+  .tile.hidden {
+    display: none;
+  }
+  .category.hidden {
+    display: none;
+  }
 </style>
 </head>
 <body>
-  <h1>Shared Icon Library</h1>
-  <p class="sub">Lucide 기반 미니멀 아웃라인 아이콘 · /assets/icons/icons.js · 아이콘 클릭 시 이름 복사</p>
-  <div class="grid" id="grid"></div>
+  <div class="head">
+    <h1>Shared Icon Library</h1>
+    <p class="sub">Lucide 기반 미니멀 아웃라인 아이콘 · /assets/icons/icons.js · 아이콘 클릭 시 이름 복사</p>
+    <input id="search" type="search" placeholder="아이콘 이름 검색... (예: arrow, user, git)">
+    <div id="count"></div>
+  </div>
+  <main id="main"></main>
 
   <script src="icons.js"></script>
   <script>
-    var grid = document.getElementById('grid');
-    Icons.names.forEach(function (name) {
-      var tile = document.createElement('div');
-      tile.className = 'tile';
-      tile.innerHTML =
-        '<span class="icon">' + Icons.svg(name, { size: 28 }) + '</span>' +
-        '<span class="name">' + name + '</span>';
-      tile.addEventListener('click', function () {
-        navigator.clipboard && navigator.clipboard.writeText(name).catch(function () {});
-        tile.classList.add('copied');
-        setTimeout(function () { tile.classList.remove('copied'); }, 800);
+    var CATEGORIES = [
+      ['Navigation', ['home','layout-grid','layout-list','menu','x',
+        'chevron-down','chevron-up','chevron-left','chevron-right','chevrons-left','chevrons-right',
+        'arrow-up','arrow-down','arrow-left','arrow-right','arrow-up-right','arrow-up-left','arrow-down-right','arrow-down-left',
+        'more-horizontal','more-vertical','filter','sliders-horizontal','settings','search',
+        'plus','minus','plus-circle','minus-circle']],
+      ['Status & feedback', ['check','check-check','x-circle','check-circle','alert-circle','alert-triangle','info','help-circle']],
+      ['Files & content', ['file','file-text','folder','folder-open','image','video','music','mic','mic-off',
+        'paperclip','download','upload','copy','clipboard','trash','trash-2','pencil','pen','save','printer']],
+      ['Sharing & links', ['share','share-2','link','link-2','external-link']],
+      ['Communication', ['mail','send','message-circle','message-square','phone','phone-call','bell','bell-off','at-sign','rss']],
+      ['Brands', ['github','twitter','facebook','instagram','linkedin','youtube','gitlab','slack','figma']],
+      ['Commerce', ['shopping-cart','shopping-bag','credit-card','dollar-sign','tag','gift','package','truck','wallet','receipt']],
+      ['Time', ['calendar','calendar-days','clock','timer','hourglass','alarm-clock']],
+      ['People', ['user','users','user-plus','user-check','user-x','smile','frown','meh']],
+      ['Media control', ['play','pause','stop-circle','circle-stop','skip-back','skip-forward',
+        'volume','volume-1','volume-2','volume-x','repeat','shuffle']],
+      ['Devices', ['monitor','smartphone','tablet','laptop','camera','headphones','wifi','bluetooth',
+        'battery','battery-charging','hard-drive','database','server','cpu']],
+      ['Weather', ['sun','moon','cloud','cloud-rain','cloud-snow','cloud-lightning','wind','umbrella']],
+      ['General & misc', ['heart','star','bookmark','flag','thumbs-up','thumbs-down','eye','eye-off',
+        'lock','unlock','key','shield','shield-check','zap','sparkles','award','trophy','target',
+        'compass','map','map-pin','navigation','globe','book','book-open','graduation-cap',
+        'briefcase','building','layers','box','puzzle']],
+      ['Dev', ['code','terminal','git-branch','git-commit','git-commit-horizontal','git-merge','git-pull-request','bug']],
+      ['Shapes', ['circle','square','triangle','hexagon']]
+    ];
+
+    var main = document.getElementById('main');
+    var countEl = document.getElementById('count');
+    var total = Icons.names.length;
+
+    CATEGORIES.forEach(function (entry) {
+      var label = entry[0], names = entry[1];
+      var section = document.createElement('section');
+      section.className = 'category';
+      section.dataset.category = label;
+
+      var h2 = document.createElement('h2');
+      h2.textContent = label;
+      section.appendChild(h2);
+
+      var grid = document.createElement('div');
+      grid.className = 'grid';
+
+      names.forEach(function (name) {
+        if (Icons.names.indexOf(name) === -1) return;
+        var tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.dataset.name = name;
+        tile.innerHTML =
+          '<span class="icon">' + Icons.svg(name, { size: 24 }) + '</span>' +
+          '<span class="name">' + name + '</span>';
+        tile.addEventListener('click', function () {
+          navigator.clipboard && navigator.clipboard.writeText(name).catch(function () {});
+          tile.classList.add('copied');
+          setTimeout(function () { tile.classList.remove('copied'); }, 800);
+        });
+        grid.appendChild(tile);
       });
-      grid.appendChild(tile);
+
+      section.appendChild(grid);
+      main.appendChild(section);
+    });
+
+    countEl.textContent = total + '개 아이콘';
+
+    document.getElementById('search').addEventListener('input', function (e) {
+      var q = e.target.value.trim().toLowerCase();
+      var shown = 0;
+      document.querySelectorAll('.category').forEach(function (section) {
+        var visibleInSection = 0;
+        section.querySelectorAll('.tile').forEach(function (tile) {
+          var match = tile.dataset.name.indexOf(q) !== -1;
+          tile.classList.toggle('hidden', !match);
+          if (match) { visibleInSection++; shown++; }
+        });
+        section.classList.toggle('hidden', visibleInSection === 0);
+      });
+      countEl.textContent = q ? shown + ' / ' + total + '개 일치' : total + '개 아이콘';
     });
   </script>
 </body>
