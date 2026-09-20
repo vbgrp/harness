@@ -194,8 +194,10 @@ a:hover { color: var(--color-purple-dark); text-decoration: underline; }
 }
 .main-nav a { color: #3A3748; min-height: 24px; display: inline-flex; align-items: center; }
 
-.quick-tags {
+.quick-tags-bar {
   border-top: 1px solid var(--color-border-light);
+}
+.quick-tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
